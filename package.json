@@ -1,8 +1,7 @@
 {
-  "name": "svelte-svg",
-  "version": "0.0.1",
+  "name": "@gijslaarman/sveltesvg",
+  "version": "0.0.2",
   "description": "SVG compiler for Svelte",
-  "main": "index.ts",
   "bin": {
     "sveltesvg": "bin/index.js"
   },
@@ -21,6 +20,7 @@
   "author": "Gijs Laarman",
   "license": "ISC",
   "dependencies": {
+    "chalk": "^4.1.1",
     "svgo": "^2.3.0",
     "yargs": "^13.3.2"
   },
