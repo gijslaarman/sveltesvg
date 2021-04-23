@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+'use strict'
 import fs from 'fs'
 import path from 'path'
 import { optimize } from 'svgo'

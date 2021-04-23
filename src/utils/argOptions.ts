@@ -1,3 +1,4 @@
+'use strict'
 import yargs from 'yargs'
 
 const options = yargs
