@@ -2,6 +2,7 @@
   "name": "@gijslaarman/sveltesvg",
   "version": "0.0.2",
   "description": "SVG compiler for Svelte",
+  "main": "bin/index.js",
   "bin": {
     "sveltesvg": "bin/index.js"
   },
