@@ -21,7 +21,21 @@ $ npm install @gijslaarman/sveltesvg
 #### CLI:
 
 ```bash
-$ @gijslaarman/sveltesvg --in "src/assets/svgs/icons" --out "src/components/Icons"
+$ sveltesvg --in "src/assets/svgs/icons" --out "src/components/Icons"
+```
+
+##### CLI flags/options:
+
+```
+Options:
+  --help                      Show help                                [boolean]
+  --version                   Show version number                      [boolean]
+  --in, --inputDir            input directory path           [string] [required]
+  --out, --outputDir          output directory path          [string] [required]
+  --ts, --typescript          should export the index files as js or ts, default
+                              is .js                                   [boolean]
+  --templatePath, --template  The path to the template you would like to use. If
+                              left empty will use the default template  [string]
 ```
 
 \- or -
@@ -31,7 +45,7 @@ $ @gijslaarman/sveltesvg --in "src/assets/svgs/icons" --out "src/components/Icon
 ```json
 // package.json:
 "scripts" {
-  "svgs": "@gijslaarman/sveltesvg --in \"src/assets/svgs/icons\" --out \"src/components/Icons\""
+  "svgs": "sveltesvg --in \"src/assets/svgs/icons\" --out \"src/components/Icons\""
 }
 ```
 
@@ -40,7 +54,7 @@ $ @gijslaarman/sveltesvg --in "src/assets/svgs/icons" --out "src/components/Icon
 ### Using npx
 
 ```bash
-$ @gijslaarman/sveltesvg --in "src/assets/svgs/icons" --out "src/components/Icons"
+$ sveltesvg --in "src/assets/svgs/icons" --out "src/components/Icons"
 ```
 
 I recommend saving it as a script inside package.json:
@@ -65,8 +79,29 @@ I recommend saving it as a script inside package.json:
 
 // Leave empty to width/height to 100%
 <IconName />
+```
 
-// Enter size to give the icon a fixed size
-<IconName size="20" />
+## Custom templates
 
+I can understand that you want to create your own template per icon. Just like [svgr](https://github.com/gregberge/svgr) you can define a path to where your template is and the generator will add the SVG to that template.
+
+### How to create your own template
+
+Create a function with 1 parameter: `svg`. The function should return a template literal or string where the svg is used.
+Write all the svelte markup/css/js/ts you want but don't forget to add the svg somewhere, otherwise the icons won't have the actual SVG.
+
+**Example:**
+
+```js
+const iconTemplate = (svg) => `
+<script lang="ts">
+  export let size: string = '100%'
+  $$props.width = size
+  $$props.height = size
+  delete $$props.size
+</script>
+${svg}
+`
+
+module.exports = iconTemplate
 ```
