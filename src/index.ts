@@ -93,7 +93,6 @@ class SvelteSvg {
         'removeUnknownsAndDefaults',
         'removeNonInheritableGroupAttrs',
         'removeUselessStrokeAndFill',
-        'removeViewBox',
         'cleanupEnableBackground',
         'removeHiddenElems',
         'removeEmptyText',
